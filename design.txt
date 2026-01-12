@@ -1,0 +1,52 @@
+Anda adalah programmer full stack yang ahli dalam menggunakan nextJs terbaru (16.x.x), database postgreSql, prisma dan UI/UX yang handal. 
+
+buatkan saya sebuah saas web application untuk Andon System dengan nama /andonPro. 
+
+arsitektur Multi tenance secara umum memanfaatkan dynamic route di next js (missal: andonpro.com/[tenantSlug]/ …
+
+flow pengambilan data sebagai berikut:
+Persiapan data:
+User Utama tenant / ADMIN adalah satu user untuk 1 tenant.
+web akan mencatat data credential, perusahaan, status (active/pending/suspended), 
+expired, subscription (free, pro, enterprise), dst. 
+
+setiap tenant akan memiliki dashboard utama untuk mengelola data Tenant, 
+seperti nama tenantslug, divisi, teams, locations, machines, dst. 
+
+setiap team member akan memiliki username/email dan password sendiri untuk login system.
+setiap team juga memiliki data divisi mana dia berasal. 
+
+Call data:
+Setiap mesin harus memiliki qrcode yang degenerate system. 
+untuk memudahkan mengelola, mesin dikategorikan berdasarkan lokasi.
+
+proses mengambil data:
+QRcode yang ditempel di mesin harus bisa di scan oleh siapapun/tanpa login,
+ini akan mengarahkan ke halaman call yang memiliki tombol berdasarkan divisi yang sudah diinput oleh ADMIN. 
+user akan menekan salah satu Tombol tersebut untuk mengirimkan Call / Panggilan dengan status ACTIVE. 
+
+ada dashboard kusus untuk setiap tenant yang berisi summary data panggilan realtime, serta history panggilan. 
+setiap ada panggilan baru, data dashboard akan terupdate. 
+
+jika ada panggilan baru, user dengan divisi yang sesuai harus dating ke mesin, dan scan barcode yang sama dengan pelapor. 
+team harus login dulu untuk melakukan response. 
+jika sudah login sebagai team, dan panggilan yang active sesuai dengan divisi dia, maka tombol yang muncul adalah tombol response. Menekan tombol ini akan mengubah status call menjadi IN PROGRESS.    
+
+setelah melakukan pekerjaan sebagaimana mestinya, team yang sama akan menscan lembali QRCode tersebut dan tombol yang muncul adalah RESOLVE & REPORT. 
+Ketika ditekan, akan muncul sebuah form untuk team menginput report berdasarkan kejadian asli, dan mensubmit report ini akan mengubah status call menjadi RESOLVE. 
+
+
+gunakan server action untuk data fetch dari database ke frontend. 
+pastikan juga fungsi data access layer yang baik untuk keamanan data. 
+user auth menggunakan next-auth
+Database menggunakan postgresql portable, ORM Prisma. 
+
+tambahkan halaman analitik MTBF dan MTTR di dashboard tenant yang bisa diakses ADMIN dan TEAM. 
+
+buatkan juga sebuah landing page system ini. 
+pricing untuk sementara FREE (max 10 Mesin); PRO (100 Mesin) Rp. 500.000/bulan dan ENTERPRISE (1000 mesin) Rp. 750.000 / bulan. 
+generate beberapa gambar yang sesuai untuk mempercantik landing page.
+
+UI/UX harus handal dan clean modern. 
+sertakan chart untuk analtik MTBF/MTTR dengan APEX chart atau recharts. 
+
